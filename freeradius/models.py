@@ -27,8 +27,6 @@ class Realmgroup(models.Model):
     groupname = models.CharField(max_length=30)
     def __str__(self):
         return str(self.realmname)
-    class Admin:
-        pass
     class Meta:
         db_table = 'realmgroup'
 
@@ -39,8 +37,6 @@ class Realms(models.Model):
     options = models.CharField(max_length=128)
     def __str__(self):
         return str(self.realmname)
-    class Admin:
-        pass
     class Meta:
         db_table = 'realms'
         verbose_name_plural = "realms"
@@ -51,11 +47,6 @@ class Attributelist(models.Model):
     checkitem = models.BooleanField()
     def __str__(self):
         return str(self.attribute)
-    class Admin:
-        list_display   = ('attribute', 'enabled', 'checkitem',)
-        list_filter    = ('enabled', 'checkitem',)
-        ordering       = ('attribute', )
-        search_fields  = ('attribute',)
     class Meta:
         db_table = 'attributelist'
 
@@ -86,11 +77,6 @@ class Nas(models.Model):
     snmp = models.CharField(max_length=10, blank=True, null=True)
     def __str__(self):
         return str(self.nasname)
-    class Admin:
-        list_display   = ('nasname', 'shortname', 'type', 'ports', 'naslocation',)
-        list_filter    = ('type', 'naslocation',)
-        ordering       = ('nasname', )
-        search_fields  = ('nasname', 'shortname', 'ports', 'naslocation',)
     class Meta:
         db_table = 'nas'
         verbose_name_plural = "nas"
@@ -104,8 +90,6 @@ class Radpostauth(models.Model):
     callingstationid = models.CharField(max_length=50)
     def __str__(self):
         return str(self.username)
-    class Admin:
-        pass
     class Meta:
         db_table = 'radpostauth'
         verbose_name_plural = "radpostauth"
@@ -119,10 +103,6 @@ class Radreply(models.Model):
     custid = models.IntegerField()
     def __str__(self):
         return str(self.username)
-    class Admin:
-        list_display   = ('calledstationid', 'custid', 'username', 'attribute', 'op', 'value',)
-        list_filter    = ('calledstationid', 'custid', 'username',)
-        search_fields  = ('attribute', 'value',)
     class Meta:
         db_table = 'radreply'
         verbose_name_plural = "radreply"
@@ -133,10 +113,6 @@ class Radusergroup(models.Model):
     calledstationid = models.CharField(max_length=64)
     def __str__(self):
         return str(self.username)
-    class Admin:
-        list_display   = ('groupname', 'username',)
-        list_filter    = ('groupname',)
-        search_fields  = ('username',)
     class Meta:
         db_table = 'radusergroup'
 
@@ -147,10 +123,6 @@ class Radcheck(models.Model):
     value = models.CharField(max_length=253)
     def __str__(self):
         return str(self.username)
-    class Admin:
-        list_display   = ('username', 'attribute', 'op', 'value',)
-        list_filter    = ('username',)
-        search_fields  = ('attribute', 'value',)
     class Meta:
         db_table = 'radcheck'
         verbose_name_plural = "radcheck"
@@ -160,9 +132,6 @@ class Radgroupcheck(models.Model):
     attribute = models.CharField(max_length=64)
     op = models.CharField(max_length=2, choices=RADOP_CHECK_TYPES)
     value = models.CharField(max_length=253)
-    class Admin:
-        list_display   = ('groupname', 'attribute', 'op', 'value',)
-        list_filter    = ('groupname',)
     class Meta:
         db_table = 'radgroupcheck'
         verbose_name_plural = "radgroupcheck"
@@ -174,9 +143,6 @@ class Radgroupreply(models.Model):
     value = models.CharField(max_length=253)
     def __str__(self):
         return str(self.groupname)
-    class Admin:
-        list_display   = ('groupname', 'attribute', 'op', 'value',)
-        list_filter    = ('groupname',)
     class Meta:
         db_table = 'radgroupreply'
         verbose_name_plural = "radgroupreply"
@@ -194,10 +160,8 @@ class Radippool(models.Model):
     def __str__(self):
         return str(self.framedipaddress)
     class Meta:
-        pass
-    class Meta:
         db_table = 'radippool'
-	verbose_name_plural = "radippool"
+        verbose_name_plural = "radippool"
 
 class Radacct(models.Model):
     radacctid = models.AutoField(primary_key=True)
@@ -227,9 +191,6 @@ class Radacct(models.Model):
     xascendsessionsvrkey = models.CharField(max_length=10, null=True)
     def __str__(self):
         return str(self.acctuniqueid)
-    class Admin:
-        list_display   = ('acctuniqueid', 'username', 'nasipaddress', 'acctstarttime', 'acctsessiontime',)
-        list_filter    = ('nasipaddress',)
     class Meta:
         db_table = 'radacct'
         verbose_name_plural = "radacct"
