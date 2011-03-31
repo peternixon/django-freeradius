@@ -60,7 +60,9 @@ class RadgroupreplyAdmin(admin.ModelAdmin):
     list_filter    = ('groupname',)
 
 class RadippoolAdmin(admin.ModelAdmin):
-    pass
+    list_display   = ('pool_name', 'framedipaddress', 'nasipaddress', 'expiry_time',)
+    list_filter    = ('pool_name', 'nasipaddress', 'expiry_time',)
+    search_fields  = ('framedipaddress',)
 
 class RadacctAdmin(admin.ModelAdmin):
     list_display   = ('acctuniqueid', 'username', 'nasipaddress', 'acctstarttime', 'acctsessiontime',)
