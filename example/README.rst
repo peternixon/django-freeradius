@@ -1,5 +1,5 @@
-PowerDNS Example Project
-========================
+FreeRADIUS Example Project
+==========================
 
 The 'example' directory contains a ready made Django project that should "just work" in the same way
 that any standard Django app does.
